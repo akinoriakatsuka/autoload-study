@@ -41,3 +41,41 @@ return ComposerAutoloaderInit8757dc4dc53ffcc00810a058449bb35e::getLoader();
 \Composer\Autoload\ClassLoader クラスのインスタンスが入る
 
 
+
+## sample-appのautoload
+
+スクラッチ想定のアプリケーション
+
+### composerをインストール
+
+composer.jsonを作成
+```json
+{
+    "autoload": {
+    }
+}
+```
+
+```bash
+composer install
+```
+
+.gitignoreに `vendor/` を追加
+
+### autoloadを追加してみる
+
+`composer.json` に以下を追加
+
+```json
+{
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    }
+}
+```
+
+
+
+
