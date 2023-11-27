@@ -216,3 +216,41 @@ class Fuga
 ただ、こうすると本当にFugaクラスを作った時にも、Hogeが読み込まれた後だと、autoloadが読み込まれない（意図してないFugaクラスが読み込まれた状態）ので、このような使い方はしない方が良い。
 
 つまりは、autoloadは、読み込もうとしたクラスが見つからなかった時に、ファイルを探して読み込むというincludeする仕組みなので、ファイルの他の部分も読まれることに注意する必要がある。
+
+### 必要ないファイルは読み込まれない
+
+例えば、以下のようなコードの場合、Fugaクラスは読み込まれない
+
+index.php
+```php
+<?php
+
+require __DIR__ . '/../vendor/autoload.php';
+
+if(true) {
+    $hoge = new App\Hoge();
+} else {
+    $fuga = new App\Fuga();
+}
+
+```
+
+ifの条件分岐がわからない場合は、autoloadを使わない場合、両方読み込んでおく必要がある
+
+not_using_autoload.php
+```php
+<?php
+
+require __DIR__ . '/../app/Hoge.php';
+require __DIR__ . '/../app/Fuga.php';
+
+if(true) {
+    $hoge = new App\Hoge();
+} else {
+    $fuga = new App\Fuga();
+}
+
+```
+
+仮に、fugaクラスのファイルを読み込むのに時間がかかる場合、autoloadを使っている場合は、fugaクラスが必要な処理に入った時のみファイルを読み込むことになるので、オーバーヘッドが減る。
+
