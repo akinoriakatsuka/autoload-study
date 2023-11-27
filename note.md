@@ -171,3 +171,48 @@ self::$includeFile は以下のように初期化されている。
     }
 
 ```
+
+## autoloadの実験
+
+### ファイルごと読み込まれる
+
+例えば、以下のようなファイル構成の場合、Fugaクラスも読み込まれる
+
+public/index.php
+```php
+<?php
+
+require __DIR__ . '/../vendor/autoload.php';
+
+$hoge = new App\Hoge();
+$fuga = new App\Fuga();
+```
+
+app/Hoge.php
+```php
+
+<?php
+
+namespace App;
+
+class Hoge
+{
+    public function __construct()
+    {
+        echo 'Hoge::__construct()' . PHP_EOL;
+    }
+}
+
+class Fuga
+{
+    public function __construct()
+    {
+        echo 'Fuga::__construct()' . PHP_EOL;
+    }
+}
+
+```
+
+ただ、こうすると本当にFugaクラスを作った時にも、Hogeが読み込まれた後だと、autoloadが読み込まれない（意図してないFugaクラスが読み込まれた状態）ので、このような使い方はしない方が良い。
+
+つまりは、autoloadは、読み込もうとしたクラスが見つからなかった時に、ファイルを探して読み込むというincludeする仕組みなので、ファイルの他の部分も読まれることに注意する必要がある。
