@@ -8,7 +8,7 @@ curl -s "https://laravel.build/autoload-study?with=pgsql" | bash
 
 ## laravelのautoload
 
-### autoloaderの読み込み
+### ClassLoaderの読み込み
 
 `public/index.php` で `/vendor/autoload.php` を読み込んでいる。
 
@@ -171,6 +171,77 @@ self::$includeFile は以下のように初期化されている。
     }
 
 ```
+
+### autoload_functionsの確認
+
+autoload_real.phpの処理が追いにくかったので、結果的にどのようなautoloadが登録されているかを確認する。
+
+```php
+<?php
+
+require __DIR__ . '/../vendor/autoload.php';
+
+var_dump(spl_autoload_functions());
+
+```
+
+spl_autoload_functionsをvar_dumpした結果は以下の通り
+
+```
+array(1) {
+  [0]=>
+  array(2) {
+    [0]=>
+    object(Composer\Autoload\ClassLoader)#1 (11) {
+      ["vendorDir":"Composer\Autoload\ClassLoader":private]=>
+      string(59) "/Users/xxx/development/autoload-study/sample-app/vendor"
+      ["prefixLengthsPsr4":"Composer\Autoload\ClassLoader":private]=>
+      array(1) {
+        ["A"]=>
+        array(1) {
+          ["App\"]=>
+          int(4)
+        }
+      }
+      ["prefixDirsPsr4":"Composer\Autoload\ClassLoader":private]=>
+      array(1) {
+        ["App\"]=>
+        array(1) {
+          [0]=>
+          string(78) "/Users/xxx/development/autoload-study/sample-app/vendor/composer/../../app"
+        }
+      }
+      ["fallbackDirsPsr4":"Composer\Autoload\ClassLoader":private]=>
+      array(0) {
+      }
+      ["prefixesPsr0":"Composer\Autoload\ClassLoader":private]=>
+      array(0) {
+      }
+      ["fallbackDirsPsr0":"Composer\Autoload\ClassLoader":private]=>
+      array(0) {
+      }
+      ["useIncludePath":"Composer\Autoload\ClassLoader":private]=>
+      bool(false)
+      ["classMap":"Composer\Autoload\ClassLoader":private]=>
+      array(1) {
+        ["Composer\InstalledVersions"]=>
+        string(102) "/Users/xxx/development/autoload-study/sample-app/vendor/composer/../composer/InstalledVersions.php"
+      }
+      ["classMapAuthoritative":"Composer\Autoload\ClassLoader":private]=>
+      bool(false)
+      ["missingClasses":"Composer\Autoload\ClassLoader":private]=>
+      array(0) {
+      }
+      ["apcuPrefix":"Composer\Autoload\ClassLoader":private]=>
+      NULL
+    }
+    [1]=>
+    string(9) "loadClass"
+  }
+}
+```
+
+Composer\Autoload\ClassLoaderクラスのloadClassメソッドが登録されていることがわかる。
 
 ## autoloadの実験
 
