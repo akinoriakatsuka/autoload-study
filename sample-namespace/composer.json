@@ -3,8 +3,8 @@
         "psr-4" : {
             "SampleVendor\\" : "SampleVendor/",
             "HogeVendor\\" : [
-                "HogeVendor/",
-                "app/"
+                "app/",
+                "HogeVendor/"
             ]
         }
     }
