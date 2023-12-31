@@ -2,7 +2,10 @@
     "autoload" : {
         "psr-4" : {
             "SampleVendor\\" : "SampleVendor/",
-            "HogeVendor\\" : "HogeVendor/"
+            "HogeVendor\\" : [
+                "HogeVendor/",
+                "app/"
+            ]
         }
     }
 }

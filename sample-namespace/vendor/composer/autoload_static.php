@@ -25,6 +25,7 @@ class ComposerStaticInite96b7a333007529ebae6c88ad1b640e3
         'HogeVendor\\' => 
         array (
             0 => __DIR__ . '/../..' . '/HogeVendor',
+            1 => __DIR__ . '/../..' . '/app',
         ),
     );
 
