@@ -33,6 +33,16 @@ class ComposerStaticInite96b7a333007529ebae6c88ad1b640e3
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        'F' => 
+        array (
+            'FugaVendor\\' => 
+            array (
+                0 => __DIR__ . '/../..' . '/lib',
+            ),
+        ),
+    );
+
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
@@ -42,6 +52,7 @@ class ComposerStaticInite96b7a333007529ebae6c88ad1b640e3
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInite96b7a333007529ebae6c88ad1b640e3::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInite96b7a333007529ebae6c88ad1b640e3::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInite96b7a333007529ebae6c88ad1b640e3::$prefixesPsr0;
             $loader->classMap = ComposerStaticInite96b7a333007529ebae6c88ad1b640e3::$classMap;
 
         }, null, ClassLoader::class);

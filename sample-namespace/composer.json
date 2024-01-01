@@ -7,6 +7,9 @@
                 "HogeVendor/"
             ]
         },
+        "psr-0": {
+            "FugaVendor\\": "lib/"
+        },
         "files" : [
             "app/Helper.php"
         ]

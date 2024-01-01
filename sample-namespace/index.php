@@ -10,4 +10,6 @@ $some_class = new SampleClass(); // SampleVendor/SampleModule/SomeClass.php
 $hoge_class = new HogeClass(); // HogeVendor/HogeModule/Hoge.php
 $app = new HogeApp(); // app/App.php
 
+$fuga = new \FugaVendor\Fuga(); // lib/fuga/Fuga.php (psr-0のautoload)
+
 hello(); // app/Helper.php (filesのautoload)
