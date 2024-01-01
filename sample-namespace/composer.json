@@ -10,6 +10,9 @@
         "psr-0": {
             "FugaVendor\\": "lib/"
         },
+        "classmap": [
+            "src/"
+        ],
         "files" : [
             "app/Helper.php"
         ]

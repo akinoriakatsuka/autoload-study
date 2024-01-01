@@ -12,4 +12,7 @@ $app = new HogeApp(); // app/App.php
 
 $fuga = new \FugaVendor\Fuga(); // lib/fuga/Fuga.php (psr-0のautoload)
 
+$foo = new \Foo\Foo(); // src/Foo.php (classmapのautoload)
+$foo2 = new \Foo\Foo2(); // src/foo/Foo2.php (classmapのautoload)
+
 hello(); // app/Helper.php (filesのautoload)
