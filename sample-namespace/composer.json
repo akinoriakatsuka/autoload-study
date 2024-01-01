@@ -1,11 +1,14 @@
 {
     "autoload" : {
-        "psr-4" : {
+        "psr-4": {
             "SampleVendor\\" : "SampleVendor/",
             "HogeVendor\\" : [
                 "app/",
                 "HogeVendor/"
             ]
-        }
+        },
+        "files" : [
+            "app/Helper.php"
+        ]
     }
 }
